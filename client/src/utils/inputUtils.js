@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import { _ } from '../vendors'
 import moment from 'moment/moment'
 
 // if the input represents a finite number, coerces and returns it, else null

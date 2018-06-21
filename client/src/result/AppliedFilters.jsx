@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import _ from 'lodash'
+import { _ } from '../vendors'
 import AppliedFilterBubble from './AppliedFilterBubble'
 import * as geoUtils from '../utils/geoUtils'
 

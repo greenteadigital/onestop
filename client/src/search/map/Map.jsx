@@ -5,7 +5,7 @@ import store from '../../store'
 import L from 'leaflet'
 import E from 'esri-leaflet'
 import 'leaflet-draw'
-import _ from 'lodash'
+import { _ } from '../../vendors'
 import {recenterGeometry} from '../../utils/geoUtils'
 
 const COLOR_ORANGE = '#FFA268'

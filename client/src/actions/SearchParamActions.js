@@ -1,5 +1,5 @@
 import Immutable from 'seamless-immutable'
-import _ from 'lodash'
+import { _ } from '../vendors'
 
 export const UPDATE_QUERY = 'update_query'
 export const updateQuery = searchText => {

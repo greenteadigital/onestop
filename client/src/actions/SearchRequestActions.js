@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import _ from 'lodash'
+import { _ } from '../vendors'
 import {showLoading, hideLoading} from './FlowActions'
 import {showErrors} from './ErrorActions'
 import {assembleSearchRequest} from '../utils/queryUtils'

@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import { _ } from '../vendors'
 import {textToNumber} from './inputUtils'
 
 export const shiftCoordinate = (coordinate, rotations) => {

@@ -1,97 +1,169 @@
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
-require('babel-polyfill')
-const modernizrrc = path.resolve(__dirname, '.modernizrrc.json')
-require(modernizrrc)
-const nodeEnv = process.env.NODE_ENV || 'development'
-const isProd = nodeEnv === 'production'
+const webpack = require('webpack')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin")
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
+const ModernizrWebpackPlugin = require('modernizr-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
-const basePlugins = [
-  new HtmlWebpackPlugin({
-    inject: false,
-    title: 'NOAA OneStop',
-    template: require('html-webpack-template'),
-    lang: 'en-US',
-    favicon: '../img/noaa-favicon.ico',
-    meta: [
-      {
-        property: 'dcterms.format', content: 'text/html',
-      },
-      {
-        property: 'og:type',
-        content: 'website',
-      },
-    ],
-  }),
-  new webpack.optimize.CommonsChunkPlugin({
-    name: 'vendor',
-    minChunks: function (module) {
-      return module.context && module.context.indexOf('node_modules') !== -1
-    },
-  }),
-]
+const modernizrConfig = {
+  "minify": true,
+  "options": [
+    "setClasses"
+  ],
+  "feature-detects": [
+    "css/gradients",
+    "css/flexbox"
+  ]
+}
 
-const devPlugins = [
-  // enable HMR globally
-  new webpack.HotModuleReplacementPlugin(),
+/*
+ * env: extra args passed in from webpack or webpack-dev-server via `--env.VAR_NAME=VAR_VALUE`
+ * argv: various webpack args, including `--mode {development|production}` to capture environment
+ */
+module.exports = (env, argv) => {
 
-  // prints more readable module names in the browser console on HMR updates
-  new webpack.NamedModulesPlugin(),
-]
+  const webpackMode = argv.mode || 'development'
+  const isProd = webpackMode === 'production'
 
-const prodPlugins = [
-  new webpack.DefinePlugin({
-    'process.env': {
-      'NODE_ENV': JSON.stringify('production'),
-    },
-  }),
-  new webpack.optimize.UglifyJsPlugin({
-    compress: {warnings: false},
-  }),
-  new webpack.LoaderOptionsPlugin({
-    minimize: true,
-    debug: false,
-  }),
-]
-
-const devEntryPoints = [
-  'babel-polyfill',
-  modernizrrc,
-
-  // bundle the client for webpack-dev-server and connect to the provided endpoint
-  'webpack-dev-server/client?http://localhost:8080',
-
-  // bundle the client for hot reloading hot reload for successful updates
-  'webpack/hot/only-dev-server',
-
-  './index.jsx',
-]
-
-const prodEntryPoints = [
-  'babel-polyfill',
-  modernizrrc,
-  './index.jsx',
-]
-
-module.exports = env => {
-  return {
-    entry: isProd ? prodEntryPoints : devEntryPoints,
-    output:
+  const basePlugins = [
+    new CleanWebpackPlugin(['dist']),             // remove/clean build folder(s) before building
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // filter out moment.js locales for bundle minification
+    new HtmlWebpackPlugin({
+      inject: false,                              // needed for html-webpack-template to work
+      title: 'NOAA OneStop',                      // default title for generated HTML doc
+      template: require('html-webpack-template'), // provides more than default template (lang, googleAnalytics, etc)
+      lang: 'en-US',                              // string identifying your content language
+      favicon: '../img/noaa-favicon.ico',          // adds given favicon path to output HTML
+      meta: [                                     // inject meta tags
         {
-          path: path.resolve(__dirname, 'build/dist'),
-          publicPath:
-              './',
-          filename:
-              '[name]-[hash].bundle.js',
+          property: 'dcterms.format',
+          content: 'text/html',
+        },
+        {
+          property: 'og:type',
+          content: 'website',
+        },
+      ],
+    }),
+    new MiniCssExtractPlugin({
+      filename: isProd ? '[name].[hash].css' : '[name].css',
+      chunkFilename: isProd ? '[id].[hash].css' : '[id].css'
+    }),
+    new ModernizrWebpackPlugin(modernizrConfig)
+  ]
+
+  const devPlugins = [
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new BundleAnalyzerPlugin()
+  ]
+
+  const plugins = basePlugins.concat(isProd ? [] : devPlugins)
+
+  const splitChunksOptimization = {
+    splitChunks: {
+      chunks: 'async',
+      minSize: 30000,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      automaticNameDelimiter: '~',
+      name: true,
+      cacheGroups: {
+        vendors: {
+          name: 'vendors',
+          test: /[\\/]node_modules[\\/]/,
+          chunks: 'all',
+          priority: -10
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true
         }
-    ,
+      }
+    }
+  }
+
+  const prodOptimization = {
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true                         // set to true if you want JS source maps
+      }),
+      new OptimizeCSSAssetsPlugin({})
+    ]
+  }
+
+  const optimization = isProd
+      ? { ...splitChunksOptimization, ...prodOptimization }
+      : splitChunksOptimization
+
+  return {
     context: path.resolve(__dirname, 'src'),
+    entry: {
+      main: "./index.jsx",
+      vendors: "./vendors.js"
+    },
+    output: {
+      filename: '[name]-[hash].bundle.js'
+    },
+    module: {
+      rules: [
+        {
+          test: /\.(js|jsx)$/,
+          exclude: /node_modules/,
+          use: {
+            loader: "babel-loader"
+          },
+        },
+        {
+          test: /\.css$/,
+          use: [
+            { loader: "style-loader" },
+            { loader: "css-loader", options: { url: false } } // url false allows the fonts in fonts.css to be resolved
+          ]
+        },
+        {
+          test: /\.ttf$/,
+          use: {
+            loader: "file-loader",
+            options: {
+              name: 'fonts/[name].[ext]',
+            }
+          }
+        },
+        {
+          test: /\.(gif|svg|jpg|png)$/,
+          loader: 'file-loader'
+        }
+      ]
+    },
+    plugins: plugins,
+    optimization: optimization,
+    resolve: {
+      // tell webpack what directories should be searched when resolving modules
+      modules: [
+        path.resolve('./node_modules/leaflet/dist', 'root'),  // allows for leaflet map CSS to be resolvable
+        'node_modules',                                       // allows packages in node_modules to be resolvable
+        path.resolve('./src/common/link')                     // allows importing <Link> as 'Link' for convenience
+      ],
+      extensions: ['.js', '.jsx'],            // allow imports to resolve without specifying extensions explicitly
+      unsafeCache: !isProd,                   // aggressive, but unsafe caching of all modules
+      alias: {
+        fa: path.resolve(__dirname, 'img/font-awesome/white/svg/')
+      }
+    },
     devtool:
         isProd ? false : 'cheap-module-eval-source-map',
     devServer:
         isProd ? {} : {
           publicPath: '/onestop/',
+          openPage: 'onestop/',
           disableHostCheck: true,
           hot: true,
           proxy: {
@@ -101,87 +173,5 @@ module.exports = env => {
             },
           },
         },
-    module:
-        {
-          rules: [{
-            test: /\.modernizrrc.json/,
-            use: ['modernizr-loader', 'json-loader'],
-          }, {
-            enforce: 'pre',
-            test: /\.js$/,
-            use: 'eslint-loader',
-            exclude: /node_modules/,
-          }, {
-            test: /\.jsx?$/,
-            exclude: /node_modules/,
-            use: {
-              loader: 'babel-loader',
-              options: {
-                presets: [
-                  ['env', {modules: false}],
-                  'react',
-                  'stage-0',
-                ],
-              },
-            },
-          }, {
-            test: /\.css$/,
-            include: /node_modules/,
-            use: [{
-              loader: 'style-loader',
-              options: {
-                sourceMap: !isProd,
-              },
-            }, {
-              loader: 'css-loader',
-            }],
-          }, {
-            test: /\.css$/,
-            exclude: /node_modules/,
-            use: [{
-              loader: 'style-loader',
-              options: {
-                sourceMap: !isProd,
-              },
-            }, {
-              loader: 'css-loader',
-            }],
-          }, {
-            test: /\.(jpe?g|png|gif|svg)$/,
-            use: [
-              {
-                loader: 'file-loader',
-                options: {
-                  hash: 'sha512',
-                  digestType: 'hex',
-                  name: '[hash].[ext]',
-                },
-              },
-            ],
-          }, {
-            test: /\.(ttf|otf|eot|woff(2)?)(\?[a-z0-9]+)?$/,
-            use: [{loader: 'file-loader?name=fonts/[name].[ext]'}],
-          }],
-        }
-    ,
-    resolve: {
-      modules: [path.resolve('./node_modules/leaflet/dist', 'root'), 'node_modules',
-        path.resolve('./src/common/link')],
-      extensions:
-          ['.js', '.jsx'],
-      unsafeCache:
-          !isProd,
-      alias:
-          {
-            'fonts':
-                path.resolve(__dirname, 'fonts/'),
-            'fa':
-                path.resolve(__dirname, 'img/font-awesome/white/svg/'),
-            modernizr$:
-                path.resolve(__dirname, '.modernizrrc.json'),
-          },
-    }
-    ,
-    plugins: isProd ? basePlugins.concat(prodPlugins) : basePlugins.concat(devPlugins),
   }
 }

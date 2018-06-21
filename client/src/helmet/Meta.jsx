@@ -1,7 +1,7 @@
 import {Helmet} from 'react-helmet'
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import _ from 'lodash'
+import { _ } from '../vendors'
 
 export default class Meta extends Component {
   formatTitle = title => {

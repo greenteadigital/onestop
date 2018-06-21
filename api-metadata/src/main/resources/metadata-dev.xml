@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<EntityDescriptor entityID="noaa-online-idp" xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
+    <IDPSSODescriptor WantAuthnRequestsSigned="false" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+        <KeyDescriptor use="signing">
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                <ds:X509Data>
+                    <ds:X509Certificate>
+MIIErzCCA5egAwIBAgIDAJlmMA0GCSqGSIb3DQEBCwUAMF0xCzAJBgNVBAYTAlVTMRgwFgYDVQQK
+Ew9VLlMuIEdvdmVybm1lbnQxDDAKBgNVBAsTA0RvRDEMMAoGA1UECxMDUEtJMRgwFgYDVQQDEw9E
+T0QgSUQgU1cgQ0EtMzgwHhcNMTYwOTEyMjEwNzM1WhcNMTkwOTEzMjEwNzM1WjByMQswCQYDVQQG
+EwJVUzEYMBYGA1UEChMPVS5TLiBHb3Zlcm5tZW50MQwwCgYDVQQLEwNEb0QxDDAKBgNVBAsTA1BL
+STENMAsGA1UECxMERElTQTEeMBwGA1UEAxMVc3NvLWRldjIuY3NwLm5vYWEuZ292MIIBIjANBgkq
+hkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyzMftkQRojZGJuCckqU4s2JGeCyjVQmGCYTlj+wAj1ky
+98xHdYuS+q8QCVtOZwQZImcmHP82AXr9j4C3vLoQxK59196/K6VcOK0+VhsPmCHF7I+zHq0cRKwG
+wiWlMbC2EWTv7OeA4kR0ZTd6R9ND0K6zDH/I5dGa0FUIdtA4JCnrb3KiquuIqVZax9oLgmEeQ6g0
+rHPk8exdNeE1R25r6Qu6O79TdF9pS/i4EU2uu0IRRdZq8FfsMbYi/I6/HMd1KtAzqyDuWpq1fE7N
+OacMuYfbLv0xg5iH/4gVzpZ6M6z0MJqkFQr3XfE++ZxPxgaispqIHM+jNpSiSItW524U7QIDAQAB
+o4IBYTCCAV0wHwYDVR0jBBgwFoAUjsW5zPzOjlO0Ks7oESrPmylsZ8owHQYDVR0OBBYEFMG8MwnS
+wQ5f4mUALdCJwqFULBftMGcGCCsGAQUFBwEBBFswWTA1BggrBgEFBQcwAoYpaHR0cDovL2NybC5k
+aXNhLm1pbC9zaWduL0RPRElEU1dDQV8zOC5jZXIwIAYIKwYBBQUHMAGGFGh0dHA6Ly9vY3NwLmRp
+c2EubWlsMA4GA1UdDwEB/wQEAwIFoDA5BgNVHR8EMjAwMC6gLKAqhihodHRwOi8vY3JsLmRpc2Eu
+bWlsL2NybC9ET0RJRFNXQ0FfMzguY3JsMCYGA1UdEQQfMB2CFXNzby1kZXYyLmNzcC5ub2FhLmdv
+docEjFp7TzAWBgNVHSAEDzANMAsGCWCGSAFlAgELJzAnBgNVHSUEIDAeBggrBgEFBQcDAQYIKwYB
+BQUHAwIGCCsGAQUFCAICMA0GCSqGSIb3DQEBCwUAA4IBAQBCGwMN5DvO/cAit48EU5YP81T/RDIE
++rk4yFJGwcPGrejbFpfXUhtRl6IWektGNN+zK+v5zroloQbfQ/W623fsbYDyVtBjX0WTu+y9v56o
+fEXFlYu+zvfCtmzoiZmbfB47Iz89cUKo+51OB8VGKo9erfmcphSjSUgtIhg7M5JrVrRQZA37W0Xn
+7OMgsEnKvl/yicUPgmwZRYnsLsvQScdOpQ05fqnAY+AQIomlIx0J9jso6pXYBPmaKxHfhBT8I4hO
+PpNdtgUlhZJy9QqRxoOUDpH247/DJ3xTh2Xq4UKjVQqSIfqt7e5UIzNYI6eBii/ZSL+ivTcdlyc2
+xANm1f5I
+                    </ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </KeyDescriptor>
+        <KeyDescriptor use="signing">
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                <ds:X509Data>
+                    <ds:X509Certificate>
+MIIErzCCA5egAwIBAgIDAhg4MA0GCSqGSIb3DQEBCwUAMF0xCzAJBgNVBAYTAlVTMRgwFgYDVQQK
+Ew9VLlMuIEdvdmVybm1lbnQxDDAKBgNVBAsTA0RvRDEMMAoGA1UECxMDUEtJMRgwFgYDVQQDEw9E
+T0QgSUQgU1cgQ0EtMzgwHhcNMTcwNzI0MTgyNjI0WhcNMjAwNzI0MTgyNjI0WjByMQswCQYDVQQG
+EwJVUzEYMBYGA1UEChMPVS5TLiBHb3Zlcm5tZW50MQwwCgYDVQQLEwNEb0QxDDAKBgNVBAsTA1BL
+STENMAsGA1UECxMERElTQTEeMBwGA1UEAxMVc3NvLWRldjIuY3NwLm5vYWEuZ292MIIBIjANBgkq
+hkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArX/hGre+iX7CTGpMv7tQgUsKNgfSbH365WWgEAvTR8a5
+IX1xI2Bub+oMFZMv17xy8dPQV8tSQT5Ftrr6ROIWpkKS5RxHaIFEtHm84/pRvX+trhFXzHMMztvx
+sz8ZAOJSsz6x+qATwT5GpCoQ6PkVrNVbrJxMgJ/jhXA/vhupOlQIgldt8mw+U+ngqJr+zbnwfwAy
+Ewk4NC/iCovz7u1YQolcVVVLlaLbIu9iZMBgNQT/sf/7kx1gmMeh1c/LVEZepbpm8vRQpMggpBhb
+S9KZEhWXjPjQA1f3R96B1Dlibin8zaE9alLIS+Pe9TruTOUrq1k5LJkAZ+1tp6VMKyneHwIDAQAB
+o4IBYTCCAV0wHwYDVR0jBBgwFoAUjsW5zPzOjlO0Ks7oESrPmylsZ8owHQYDVR0OBBYEFImegdpg
+YrrgqS7YybESq0jkQyKnMGcGCCsGAQUFBwEBBFswWTA1BggrBgEFBQcwAoYpaHR0cDovL2NybC5k
+aXNhLm1pbC9zaWduL0RPRElEU1dDQV8zOC5jZXIwIAYIKwYBBQUHMAGGFGh0dHA6Ly9vY3NwLmRp
+c2EubWlsMA4GA1UdDwEB/wQEAwIFoDA5BgNVHR8EMjAwMC6gLKAqhihodHRwOi8vY3JsLmRpc2Eu
+bWlsL2NybC9ET0RJRFNXQ0FfMzguY3JsMCYGA1UdEQQfMB2CFXNzby1kZXYyLmNzcC5ub2FhLmdv
+docEjFp7TzAWBgNVHSAEDzANMAsGCWCGSAFlAgELJzAnBgNVHSUEIDAeBggrBgEFBQcDAQYIKwYB
+BQUHAwIGCCsGAQUFCAICMA0GCSqGSIb3DQEBCwUAA4IBAQCxq2hzafRFMb1kt90ED6mjQ8pv0jRb
+nLy55nB+Y+rjBcYW+XJQbSM6PAygR0pxDQge1astUoFSbbY72YYp3IW3CobOYReQY1/4cQGOxzlM
+VD8tPJMRC2+MQtaWxTvnpOHm+7JLr0ijneRslT5Kp10eklKiqcpU9b9YPiEgijRIOGrttFVqGgrv
+7p1OOq9LgD0oKe+OtuGWuVCffv0egfj7SipyMvEKsz/mLAXBk+STciwmvREX7fMhIXbGiLhMXmxZ
+aKt6e60BjnMnkuR7DDecXER8VDwJirGreYF29xs4ydfh2VpdJ1qIACQ3Eca9i4np6sbCBxYZeTD5
+qkPmud2M
+                    </ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </KeyDescriptor>
+        <ArtifactResolutionService index="0" isDefault="true" Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://sso-dev.lb.csp.noaa.gov:443/openam/ArtifactResolver/metaAlias/noaa-online/noaa-online-idp"/>
+        <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://sso-dev.lb.csp.noaa.gov:443/openam/IDPSloRedirect/metaAlias/noaa-online/noaa-online-idp" ResponseLocation="https://sso-dev.lb.csp.noaa.gov:443/openam/IDPSloRedirect/metaAlias/noaa-online/noaa-online-idp"/>
+        <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://sso-dev.lb.csp.noaa.gov:443/openam/IDPSloPOST/metaAlias/noaa-online/noaa-online-idp" ResponseLocation="https://sso-dev.lb.csp.noaa.gov:443/openam/IDPSloPOST/metaAlias/noaa-online/noaa-online-idp"/>
+        <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://sso-dev.lb.csp.noaa.gov:443/openam/IDPSloSoap/metaAlias/noaa-online/noaa-online-idp"/>
+        <ManageNameIDService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://sso-dev.lb.csp.noaa.gov:443/openam/IDPMniRedirect/metaAlias/noaa-online/noaa-online-idp" ResponseLocation="https://sso-dev.lb.csp.noaa.gov:443/openam/IDPMniRedirect/metaAlias/noaa-online/noaa-online-idp"/>
+        <ManageNameIDService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://sso-dev.lb.csp.noaa.gov:443/openam/IDPMniPOST/metaAlias/noaa-online/noaa-online-idp" ResponseLocation="https://sso-dev.lb.csp.noaa.gov:443/openam/IDPMniPOST/metaAlias/noaa-online/noaa-online-idp"/>
+        <ManageNameIDService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://sso-dev.lb.csp.noaa.gov:443/openam/IDPMniSoap/metaAlias/noaa-online/noaa-online-idp"/>
+        <NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</NameIDFormat>
+        <NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</NameIDFormat>
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://sso-dev.lb.csp.noaa.gov:443/openam/SSORedirect/metaAlias/noaa-online/noaa-online-idp"/>
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://sso-dev.lb.csp.noaa.gov:443/openam/SSOPOST/metaAlias/noaa-online/noaa-online-idp"/>
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://sso-dev.lb.csp.noaa.gov:443/openam/SSOSoap/metaAlias/noaa-online/noaa-online-idp"/>
+        <NameIDMappingService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://sso-dev.lb.csp.noaa.gov:443/openam/NIMSoap/metaAlias/noaa-online/noaa-online-idp"/>
+        <AssertionIDRequestService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://sso-dev.lb.csp.noaa.gov:443/openam/AIDReqSoap/IDPRole/metaAlias/noaa-online/noaa-online-idp"/>
+        <AssertionIDRequestService Binding="urn:oasis:names:tc:SAML:2.0:bindings:URI" Location="https://sso-dev.lb.csp.noaa.gov:443/openam/AIDReqUri/IDPRole/metaAlias/noaa-online/noaa-online-idp"/>
+    </IDPSSODescriptor>
+</EntityDescriptor>
+
+

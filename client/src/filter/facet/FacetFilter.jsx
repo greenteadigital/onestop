@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import Expandable from '../../common/Expandable'
 import FacetTree from './FacetTreeContainer'
-import _ from 'lodash'
+import { _ } from '../../vendors'
 import {FilterStyles} from '../../common/defaultStyles'
 
 /**

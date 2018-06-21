@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import FlexColumn from '../../common/FlexColumn'
 import Button from '../../common/input/Button'
-import _ from 'lodash'
+import { _ } from '../../vendors'
 import {Key} from '../../utils/keyboardUtils'
 import mapIcon from '../../../img/font-awesome/white/svg/globe.svg'
 import Checkbox from '../../common/input/Checkbox'

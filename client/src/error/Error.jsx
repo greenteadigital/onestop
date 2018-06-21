@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from '../common/input/Button'
 import {boxShadow} from '../common/defaultStyles'
-import _ from 'lodash'
+import { _ } from '../vendors'
 import Meta from '../helmet/Meta'
 
 const defaultError = {

@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import { _ } from '../vendors'
 import {push} from 'connected-react-router'
 import {
   encodeQueryString,

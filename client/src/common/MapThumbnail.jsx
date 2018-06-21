@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
 import L from 'leaflet'
 import E from 'esri-leaflet'
-import _ from 'lodash'
+import { _ } from '../vendors'
 import {
   ensureDatelineFriendlyGeometry,
   renderPointAsPolygon,

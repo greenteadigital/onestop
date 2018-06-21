@@ -1,5 +1,5 @@
 import React from 'react'
-import _ from 'lodash'
+import { _ } from '../vendors'
 import search from 'fa/search.svg'
 
 import Button from '../common/input/Button'

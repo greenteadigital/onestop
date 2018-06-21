@@ -1,6 +1,6 @@
 import React from 'react'
 import Facet from './Facet'
-import _ from 'lodash'
+import { _ } from '../../vendors'
 import {Key} from '../../utils/keyboardUtils'
 
 import Immutable from 'seamless-immutable'

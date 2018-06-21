@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import _ from 'lodash'
+import { _ } from '../vendors'
 import A from '../common/link/Link'
 import FlexRow from '../common/FlexRow'
 import Expandable from '../common/Expandable'
